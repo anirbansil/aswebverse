@@ -234,6 +234,36 @@
   var firstOpenFaq = document.querySelector(".faq-item.is-open .faq-answer");
   if (firstOpenFaq) firstOpenFaq.style.maxHeight = firstOpenFaq.scrollHeight + "px";
 
+  /* ---------- Pill select groups (contact form) ---------- */
+  document.querySelectorAll(".pill-group").forEach(function (group) {
+    var mode = group.getAttribute("data-pill-group") || "single";
+    var hiddenInput = group.parentElement.querySelector('input[type="hidden"]');
+    function syncHidden() {
+      if (!hiddenInput) return;
+      var selected = Array.prototype.filter
+        .call(group.querySelectorAll(".pill-btn"), function (b) {
+          return b.classList.contains("is-selected");
+        })
+        .map(function (b) {
+          return b.textContent.trim();
+        });
+      hiddenInput.value = selected.join(", ");
+    }
+    group.querySelectorAll(".pill-btn").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        if (mode === "single") {
+          group.querySelectorAll(".pill-btn").forEach(function (b) {
+            b.classList.remove("is-selected");
+          });
+          btn.classList.add("is-selected");
+        } else {
+          btn.classList.toggle("is-selected");
+        }
+        syncHidden();
+      });
+    });
+  });
+
   /* ---------- Contact form ---------- */
   var contactForm = document.getElementById("contactForm");
   if (contactForm) {
