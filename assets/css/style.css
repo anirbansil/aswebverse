@@ -284,7 +284,7 @@ main { display: block; padding-top: var(--header-h); }
   align-items: center;
   gap: 10px;
 }
-.brand-lockup img { height: 38px; width: auto; }
+.brand-lockup img { height: 44px; width: auto; }
 .brand-text { display: flex; flex-direction: column; line-height: 1.05; }
 .brand-word { font-size: 19px; font-weight: 800; color: var(--navy-deep); letter-spacing: 0.01em; }
 .brand-caption { font-size: 9.5px; font-weight: 600; letter-spacing: 0.16em; color: var(--text-muted); }
